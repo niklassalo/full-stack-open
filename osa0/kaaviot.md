@@ -1,1 +1,1 @@
-
+![Uudet noten lisäys]([suora-URL-osoite-kuvaan](https://github.com/niklassalo/fsOpen/blob/main/mermaid-diagram-2023-09-17-181255.png)https://github.com/niklassalo/fsOpen/blob/main/mermaid-diagram-2023-09-17-181255.png)

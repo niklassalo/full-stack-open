@@ -1,5 +1,39 @@
 import { useState } from 'react'
 
+const Title = (props) => {
+  return (
+    <div>
+      <h1>{props.text}</h1>
+    </div>
+  )
+}
+
+const Anecdotes = (props) => {
+  return (
+    <div>
+      <div>{props.anecdotes}</div>
+      <div>has {props.votes} votes</div>
+    </div>
+  )
+}
+
+const Button = (props) => {
+  return (
+    <div>
+      <button onClick={props.handleClick}>{props.text}</button>
+    </div>
+  )
+}
+
+const MostVotes = (props) => {
+  return (
+    <div>
+      <div>{props.anecdotes}</div>
+      <div>has {props.mostVotes} votes</div>
+    </div>
+  )
+}
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -13,39 +47,29 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0))
-  const mostVotedAnecdoteIndex = votes.indexOf(Math.max(...votes))
-  const mostVotedAnecdote = anecdotes[mostVotedAnecdoteIndex]
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
 
   const setRandomAnecdote = () => {
-    const randomIndex = Math.floor(Math.random() * anecdotes.length)
-    setSelected(randomIndex);
-}
+    setSelected(Math.floor(Math.random() * anecdotes.length))
+  }
 
-const voteAnecdote = () => {
-  const copy = [...votes]
-  copy[selected] += 1
-  setVotes(copy)
-}
+  const voteAnecdote = () => {
+    const newVote = [...votes]
+    newVote[selected] += 1
+    setVotes(newVote)
+  }
+
+  const mostVotes = Math.max(...votes)
+  const index = votes.indexOf(mostVotes)
 
   return (
     <div>
-      <h2>Anecdote of the day</h2>
-      {anecdotes[selected]}
-      <br />
-      <div>
-        has {votes[selected]} votes
-      </div>
-      <button onClick={voteAnecdote}>vote</button>
-      <button onClick={setRandomAnecdote}> next anecdote </button>
-      <div>
-      <h2>Anecdote with most votes</h2>
-      {mostVotedAnecdote}
-      <div>
-        has {votes[mostVotedAnecdoteIndex]} votes
-      </div>
-</div>
-
+      <Title text="Anecdote of the day" />
+      <Anecdotes anecdotes={anecdotes[selected]} votes={votes[selected]} />
+      <Button handleClick={setRandomAnecdote} text='next anecdote'/>
+      <Button handleClick={voteAnecdote} text='vote'/>
+      <Title text='Anecdote with most votes'/>
+      <MostVotes anecdotes={anecdotes[index]} mostVotes={mostVotes} />
     </div>
   )
 }

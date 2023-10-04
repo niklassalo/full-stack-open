@@ -3,4 +3,4 @@ This course serves as an introduction to modern web application development with
 The course covers testing, configuration and environment management, the use of databases for storing the application’s data amongst other things.
 
 
-from https://fullstackopen.com/en/about
+https://fullstackopen.com/en/about
